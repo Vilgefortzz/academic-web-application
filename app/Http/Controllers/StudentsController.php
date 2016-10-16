@@ -23,7 +23,6 @@ class StudentsController extends Controller
     public function edit_password(Student $student){
 
         return view('students.edit_password', compact('student'));
-
     }
 
     public function change_password(Request $request, Student $student){
