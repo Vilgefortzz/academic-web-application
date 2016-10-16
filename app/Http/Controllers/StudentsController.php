@@ -26,7 +26,7 @@ class StudentsController extends Controller
 
     }
 
-    public function update_password(Request $request, Student $student){
+    public function change_password(Request $request, Student $student){
 
         // Zmiana hasła + zapisanie w formie zaszyfrowanej
         $student->update(['password' => Hash::make($request->get('password'))]);
