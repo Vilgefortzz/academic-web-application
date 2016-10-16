@@ -1,17 +1,27 @@
-
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
 @import "variables";
 
-$red : green;
-
-body{
-
-  color: $red;
-
-}
-
 // Bootstrap
-//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+h1.panel-heading {
+  font-size: 80px;
+}
+h2.panel-heading {
+  font-size: 30px;
+}
+h3.panel-heading {
+  font-size: 24px;
+}
+h4.panel-heading {
+  font-size: 18px
+}
+h5.panel-heading {
+  font-size: 14px
+}
+h6.panel-heading {
+  font-size: 10px;
+}
