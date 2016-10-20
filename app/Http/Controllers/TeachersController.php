@@ -27,6 +27,14 @@ class TeachersController extends Controller
 
     public function change_password(Request $request, Teacher $teacher){
 
+        // Walidacja
+
+        $this->validate($request, [
+
+            'password' => 'required|min:6|max:14'
+
+        ]);
+
         // Zmiana hasła + zapisanie w formie zaszyfrowanej
         $teacher->update(['password' => Hash::make($request->get('password'))]);
         return Redirect::to("teachers/". $teacher->id);

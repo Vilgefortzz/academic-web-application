@@ -12,16 +12,39 @@
 
         <form method="post" action="/teachers/{{$teacher->id}}">
 
-            {{--Trzeba powiedzieć jakiego żądania będziemy wymagać--}}
-            {{method_field('patch')}}
-            {{--Needed!!!--}}
             {{ csrf_field() }}
+            {{method_field('patch')}}
 
-            <textarea class="form-control" name="password"></textarea>
-            <br>
-            <button type="submit" class="btn-sm">Change the password</button>
+                <div class="form-group"><br><br><br><br>
 
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading text-center">
+                            <h1>Change your password</h1>
+                        </div><br><br>
+
+                        <div class="text-center">
+                            <label for="password">New Password:</label>
+                            <input id="password" type="password" name="password">
+                        </div><br><br>
+
+                    </div>
+
+                <button type="submit" class="btn-primary">Confirm</button>
+
+                </div>
         </form>
     </div>
+
+    {{--Obsługa walidacji danych--}}
+    @if (count($errors) > 0)
+        <div class="alert alert-danger text-center">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <b>{{ $error }}</b>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 @stop

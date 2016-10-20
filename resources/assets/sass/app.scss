@@ -7,21 +7,26 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-h1.panel-heading {
-  font-size: 80px;
+.login-page {
+  background-image: url('/images/school.png');
+  background-repeat: repeat;
 }
-h2.panel-heading {
-  font-size: 30px;
+
+.main-header {
+
+  background-image: url('/images/stardust.png');
+  background-repeat: repeat;
+  color: #8eb4cb;
+
 }
-h3.panel-heading {
-  font-size: 24px;
+
+.h1-main {
+
+  font-size: 120px;
 }
-h4.panel-heading {
-  font-size: 18px
-}
-h5.panel-heading {
-  font-size: 14px
-}
-h6.panel-heading {
-  font-size: 10px;
+
+.h1-sub {
+
+  font-size: 50px;
+
 }
