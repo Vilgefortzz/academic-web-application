@@ -8,6 +8,20 @@ Route::get('/', function (){
 
 });
 
+// Login
+
+Route::get('/login', 'AuthController@login');
+Route::post('/handleLogin', 'AuthController@handleLogin');
+
+// Logout
+
+Route::post('/handleLogout', 'AuthController@handleLogout');
+
+// Home dashboards
+
+Route::get('/students/{student}/home', 'StudentsController@home');
+Route::get('/teachers/{teacher}/home', 'TeachersController@home');
+
 // Students
 
 Route::get('/students', 'StudentsController@index');

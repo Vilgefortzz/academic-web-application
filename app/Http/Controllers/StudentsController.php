@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
-use Redirect;
+use Illuminate\Support\Facades\Redirect;
 
 class StudentsController extends Controller
 {
@@ -38,5 +39,13 @@ class StudentsController extends Controller
         // Zmiana hasła + zapisanie w formie zaszyfrowanej
         $student->update(['password' => Hash::make($request->get('password'))]);
         return Redirect::to("students/". $student->id);
+    }
+
+    public function home(Student $student){
+
+        if (Auth::guard('student')->id() == $student->id)
+            return view ('students.home', compact('student'));
+
+        return Redirect::to('/');
     }
 }
