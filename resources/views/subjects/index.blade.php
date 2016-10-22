@@ -1,10 +1,4 @@
-@extends('layouts.main')
-
-@section('header')
-
-    <title>All subjects</title>
-
-@stop
+@extends('layouts.app')
 
 @section('content')
 

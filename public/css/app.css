@@ -5766,14 +5766,20 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-.login-page {
+.main-background {
   background-image: url("/images/school.png");
   background-repeat: repeat; }
+
+.sub_bacground {
+  background-image: url("/images/building.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px; }
 
 .main-header {
   background-image: url("/images/stardust.png");
   background-repeat: repeat;
-  color: #8eb4cb; }
+  color: #d9dde7; }
 
 .h1-main {
   font-size: 120px; }

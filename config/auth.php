@@ -45,6 +45,16 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
+
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ],
     ],
 
     /*
@@ -74,6 +84,16 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'students' => [
+            'driver' => 'database',
+            'table' => 'students',
+        ],
+
+        'teachers' => [
+            'driver' => 'database',
+            'table' => 'teachers',
+        ],
     ],
 
     /*
@@ -98,5 +118,4 @@ return [
             'expire' => 60,
         ],
     ],
-
 ];

@@ -1,10 +1,4 @@
-@extends('layouts.main')
-
-@section('header')
-
-    <title>Id_{{$subject->id}}</title>
-
-@stop
+@extends('layouts.app')
 
 @section('content')
 

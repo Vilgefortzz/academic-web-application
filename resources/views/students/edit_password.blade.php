@@ -1,16 +1,10 @@
-@extends('layouts.main')
-
-@section('header')
-
-    <title>Id_{{$student->id}}</title>
-
-@stop
+@extends('layouts.app')
 
 @section('content')
 
     <div class="row">
 
-        <form method="post" action="/students/{{$student->id}}">
+        <form class="form-horizontal" method="post" action="/students/{{$student->id}}">
 
             {{ csrf_field() }}
             {{method_field('patch')}}
@@ -19,14 +13,16 @@
 
                     <div class="panel panel-primary">
 
-                        <div class="panel-heading text-center">
+                        <div class="panel-heading">
                             <h1>Change your password</h1>
-                        </div><br><br>
+                        </div>
 
-                        <div class="text-center">
+                        <div class="panel-body">
+
                             <label for="password">New Password:</label>
                             <input id="password" type="password" name="password">
-                        </div><br><br>
+
+                        </div>
 
                     </div>
 
