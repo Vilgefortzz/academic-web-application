@@ -30,7 +30,6 @@
 
         <form method="post" action="/subjects/{{$subject->id}}/students">
 
-            {{--Needed!!!--}}
             {{ csrf_field() }}
 
             <textarea class="form-control" name="id"></textarea>

@@ -26,15 +26,16 @@ Route::get('/teachers/{teacher}/home', 'TeachersController@home');
 
 Route::get('/students', 'StudentsController@index');
 Route::get('/students/{student}', 'StudentsController@show');
-Route::get('/students/{student}/edit', 'StudentsController@edit_password');
-Route::patch('/students/{student}', 'StudentsController@change_password');
+Route::get('/students/{student}/subjects', 'StudentsController@showSubjects');
+Route::get('/students/{student}/edit', 'StudentsController@editPassword');
+Route::patch('/students/{student}', 'StudentsController@changePassword');
 
 // Teachers
 
 Route::get('/teachers', 'TeachersController@index');
 Route::get('/teachers/{teacher}', 'TeachersController@show');
-Route::get('/teachers/{teacher}/edit', 'TeachersController@edit_password');
-Route::patch('/teachers/{teacher}', 'TeachersController@change_password');
+Route::get('/teachers/{teacher}/edit', 'TeachersController@editPassword');
+Route::patch('/teachers/{teacher}', 'TeachersController@changePassword');
 
 // Subjects
 

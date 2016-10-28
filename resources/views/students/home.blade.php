@@ -2,16 +2,45 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
 
-                <div class="panel-body">
-                    You are logged in as a student !!
-                </div>
-            </div>
+            <h1>
+
+                {{$student->first_name}}
+                {{$student->second_name}}
+
+            </h1>
+
+        </div>
+
+        <div class="panel-body">
+
+            <ul class="list-unstyled">
+
+                <li> Album number: {{$student->album_number}}</li>
+                <li> Project group: {{$student->pr_group}}</li>
+                <li> Laboratory group: {{$student->lab_group}}</li>
+
+            </ul>
+
         </div>
     </div>
+
+    @if(Session::has('success'))
+
+        <div class="alert alert-success text-center">
+            {{Session::get('success')}}
+        </div>
+
+    @endif
+
+    @if(Session::has('error'))
+
+        <div class="alert alert-danger text-center">
+            {{Session::get('error')}}
+        </div>
+
+    @endif
 
 @stop

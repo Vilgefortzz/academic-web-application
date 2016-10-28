@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
-            <div class="panel">
-                <div class="panel-heading">
+            <div class="panel" style="margin-top: 80px;">
+                <div class="panel-heading panel-header-background">
                     <h1 class="h1-sub text-center">
                         Login
                     </h1>

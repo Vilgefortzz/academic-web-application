@@ -7,6 +7,7 @@ use Auth;
 use Hash;
 use Illuminate\Http\Request;
 use Redirect;
+use Session;
 
 class TeachersController extends Controller
 {
@@ -21,12 +22,12 @@ class TeachersController extends Controller
         return view('teachers.show', compact('teacher'));
     }
 
-    public function edit_password(Teacher $teacher){
+    public function editPassword(Teacher $teacher){
 
         return view('teachers.edit_password', compact('teacher'));
     }
 
-    public function change_password(Request $request, Teacher $teacher){
+    public function changePassword(Request $request, Teacher $teacher){
 
         // Walidacja
 
@@ -38,7 +39,10 @@ class TeachersController extends Controller
 
         // Zmiana hasła + zapisanie w formie zaszyfrowanej
         $teacher->update(['password' => Hash::make($request->get('password'))]);
-        return Redirect::to("teachers/". $teacher->id);
+
+        Session::flash('success', 'You are succesfully changed your password!!');
+
+        return Redirect::to('teachers/'. $teacher->id . '/home');
     }
 
     public function home(Teacher $teacher){
@@ -46,7 +50,9 @@ class TeachersController extends Controller
         if (Auth::guard('teacher')->id() == $teacher->id)
             return view ('teachers.home', compact('teacher'));
 
-        return Redirect::to('/');
+        Session::flash('error', 'Something went wrong. You are back to homepage!!');
+
+        return back();
 
     }
 }

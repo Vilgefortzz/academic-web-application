@@ -2,12 +2,10 @@
 
 @section('content')
 
-    <div class="row">
-
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="margin-top: 80px">
                 <div class="panel-heading main-header">
                     <h1 class="h1-sub text-center main-header">
-                        Virtual Univeristy
+                        Virtual University
                     </h1>
                 </div>
 
@@ -39,8 +37,14 @@
                     </div>
 
                 </div>
-
             </div>
-    </div>
+
+        @if(Session::has('error'))
+
+            <div class="alert alert-danger text-center">
+                {{Session::get('error')}}
+            </div>
+
+        @endif
 
 @stop

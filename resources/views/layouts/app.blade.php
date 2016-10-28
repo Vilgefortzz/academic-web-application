@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'Virtual University') }}</title>
 
     <!-- Styles -->
-    <link href="{{elixir('css/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{elixir('/css/app.css')}}" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Scripts -->
     <script>
@@ -19,21 +20,79 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 </head>
 <body class="main-background">
     <div id="app">
 
-        @include('layouts.nav')
+        @if (Auth::guard('student')->check())
 
-        <div class="container">
+            <div id="wrapper" style="margin-top: 52px">
 
-            @yield('content')
+                @include('layouts.nav_student')
+                @include('layouts.side_bar_student')
 
-        </div>
+                <div class="container">
+                    <div id="page-content-wrapper">
+                        <div class="row">
+
+                            @yield('content')
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        @elseif(Auth::guard('teacher')->check())
+
+            <div id="wrapper" style="margin-top: 52px">
+
+                @include('layouts.nav_teacher')
+                @include('layouts.side_bar_teacher')
+
+                <div class="container">
+                    <div id="page-content-wrapper">
+                        <div class="row">
+
+                            @yield('content')
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        @else
+            @include('layouts.nav_guest')
+
+            <div class="container">
+                <div class="row">
+
+                    @yield('content')
+
+                </div>
+            </div>
+
+        @endif
 
     </div>
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
 </body>
 </html>
