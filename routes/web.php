@@ -4,7 +4,7 @@
 
 Route::get('/', function (){
 
-    return view ('main_page');
+    return view('main_page');
 
 });
 
@@ -41,5 +41,3 @@ Route::patch('/teachers/{teacher}', 'TeachersController@changePassword');
 
 Route::get('/subjects', 'SubjectsController@index');
 Route::get('/subjects/{subject}', 'SubjectsController@show');
-Route::post('/subjects/{subject}/students', 'SubjectsController@addStudent');
-Route::post('/subjects/{subject}/teachers', 'SubjectsController@addTeacher');

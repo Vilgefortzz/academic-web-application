@@ -19,24 +19,4 @@ class SubjectsController extends Controller
 
         return view('subjects.show', compact('subject'));
     }
-
-    public function addStudent(Request $request, Subject $subject){
-
-        // Zabezpieczenie przed zduplikowanymi tabelami
-        if (Student::find($request->id)!= null && !$subject->students->contains($request->id)) {
-            $subject->students()->attach($request->id);
-        }
-
-        return back();
-    }
-
-    public function addTeacher(Request $request, Subject $subject){
-
-        // Zabezpieczenie przed zduplikowanymi tabelami
-        if (Teacher::find($request->id)!= null && !$subject->teachers->contains($request->id)) {
-            $this->teachers()->attach($request->id);
-        }
-
-        return back();
-    }
 }

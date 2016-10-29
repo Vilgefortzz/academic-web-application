@@ -2,41 +2,54 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="col-md-6">
 
-        <h2 class="well">{{$subject->name}}</h2>
+        <div class="panel panel-default">
 
-        <h3 class="text-primary">ECTS:</h3>
-        <h2>{{$subject->ECTS}}</h2><br>
+            <div class="panel-heading">
+                <h1><span class="glyphicon glyphicon-blackboard"></span> {{$subject->name}}</h1>
+            </div>
 
-        <b>Students:</b><br><br>
-        <ul class="list-group">
-            @foreach($subject->students as $student)
-                    {{$student->first_name}}
-                    {{$student->second_name}},
-            @endforeach
-        </ul>
+            <div class="panel-body">
 
-        <b>Teachers:</b><br><br>
-        <ul class="list-group">
-            @foreach($subject->teachers as $teacher)
-                {{$teacher->degree}}
-                {{$teacher->first_name}}
-                {{$teacher->second_name}},
-            @endforeach
-        </ul>
+                <h3 class="text-primary">ECTS: {{$subject->ECTS}}</h3>
 
-        <br><br>
+                <b>Students:</b><br><br>
+                <ul class="list-group">
+                    @foreach($subject->students as $student)
+                        {{$student->first_name}}
+                        {{$student->second_name}},
+                    @endforeach
+                </ul>
 
-        <form method="post" action="/subjects/{{$subject->id}}/students">
+                <b>Teachers:</b><br><br>
+                <ul class="list-group">
+                    @foreach($subject->teachers as $teacher)
+                        {{$teacher->degree}}
+                        {{$teacher->first_name}}
+                        {{$teacher->second_name}},
+                    @endforeach
+                </ul>
 
-            {{ csrf_field() }}
+            </div>
 
-            <textarea class="form-control" name="id"></textarea>
-            <br>
-            <button type="submit" class="btn-sm">Click it</button>
-
-        </form>
+        </div>
     </div>
 
+    <div class="col-md-4">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h1>Files</h1>
+            </div>
+
+            <div class="panel-body">
+
+                ...
+
+            </div>
+
+        </div>
+    </div>
 @stop
