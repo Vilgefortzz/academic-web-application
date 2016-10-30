@@ -6,6 +6,7 @@ use App\Teacher;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Redirect;
 use Session;
 
@@ -20,6 +21,12 @@ class TeachersController extends Controller
     public function show(Teacher $teacher){
 
         return view('teachers.show', compact('teacher'));
+    }
+
+    public function showSubjects(Teacher $teacher){
+
+        return view ('teachers.show_subjects', compact('teacher'));
+
     }
 
     public function editPassword(Teacher $teacher){
@@ -55,4 +62,6 @@ class TeachersController extends Controller
         return back();
 
     }
+
+
 }

@@ -21,6 +21,12 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
 
+                <li id="switch">
+
+                    <a href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-eye-open"></span> Show/Hide Sidebar</a>
+
+                </li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 

@@ -14,4 +14,9 @@ class Teacher extends Model
 
         return $this->belongsToMany(Subject::class)->withTimestamps();
     }
+
+    public function fileentries(){
+
+        return $this->hasMany(Fileentry::class);
+    }
 }

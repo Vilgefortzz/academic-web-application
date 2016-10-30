@@ -19,4 +19,9 @@ class Subject extends Model
 
         return $this->belongsToMany(Teacher::class)->withTimestamps();
     }
+
+    public function fileentries(){
+
+        return $this->hasMany(Fileentry::class);
+    }
 }

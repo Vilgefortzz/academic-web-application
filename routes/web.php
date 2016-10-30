@@ -34,6 +34,7 @@ Route::patch('/students/{student}', 'StudentsController@changePassword');
 
 Route::get('/teachers', 'TeachersController@index');
 Route::get('/teachers/{teacher}', 'TeachersController@show');
+Route::get('/teachers/{teacher}/subjects', 'TeachersController@showSubjects');
 Route::get('/teachers/{teacher}/edit', 'TeachersController@editPassword');
 Route::patch('/teachers/{teacher}', 'TeachersController@changePassword');
 
@@ -41,3 +42,10 @@ Route::patch('/teachers/{teacher}', 'TeachersController@changePassword');
 
 Route::get('/subjects', 'SubjectsController@index');
 Route::get('/subjects/{subject}', 'SubjectsController@show');
+
+// Upload and download files
+
+Route::get('/fileentry/get/{original_filename}', [
+    'as' => 'getentry', 'uses' => 'FileEntriesController@download']);
+Route::post('/fileentry/add/{subject_id}', [
+    'as' => 'addentry', 'uses' => 'FileEntriesController@upload']);

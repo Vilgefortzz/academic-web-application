@@ -22,7 +22,7 @@
         </li>
 
         <li>
-            <a href="#">Your subjects</a>
+            <a href={{url('/teachers/'. Auth::guard('teacher')->id() .'/subjects')}}>Your subjects</a>
         </li>
 
         <li>
