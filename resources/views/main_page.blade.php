@@ -36,6 +36,12 @@
 
                     </div>
 
+                    <div class="col-md-2">
+
+                        <h4><b>Upload files for students</b></h4>
+
+                    </div>
+
                 </div>
             </div>
 

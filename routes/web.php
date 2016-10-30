@@ -49,3 +49,8 @@ Route::get('/fileentry/get/{original_filename}', [
     'as' => 'getentry', 'uses' => 'FileEntriesController@download']);
 Route::post('/fileentry/add/{subject_id}', [
     'as' => 'addentry', 'uses' => 'FileEntriesController@upload']);
+
+// Delete files
+
+Route::delete('/fileentry/delete/{original_filename}', [
+    'as' => 'deleteentry', 'uses' => 'FileEntriesController@delete']);

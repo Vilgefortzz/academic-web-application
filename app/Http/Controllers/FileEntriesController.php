@@ -45,4 +45,16 @@ class FileEntriesController extends Controller
             ->header('Content-Type', $entry->original_filename);
     }
 
+    public function delete($original_filename){
+
+        // Remove from database
+        $entry = Fileentry::where('original_filename', '=', $original_filename)->firstOrFail();
+        $entry->delete();
+
+        // Remove file from storage
+        Storage::delete($original_filename);
+
+        return back();
+    }
+
 }

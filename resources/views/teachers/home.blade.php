@@ -2,43 +2,47 @@
 
 @section('content')
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="col-md-5">
 
-            <h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">
 
-                {{$teacher->degree}}
-                {{$teacher->first_name}}
-                {{$teacher->second_name}}
+                <h1>
 
-            </h1>
+                    {{$teacher->degree}}
+                    {{$teacher->first_name}}
+                    {{$teacher->second_name}}
 
+                </h1>
+
+            </div>
+
+            <div class="panel-body">
+
+                <ul class="list-unstyled">
+
+                    <li> Publications: ...........</li>
+
+                </ul>
+
+            </div>
         </div>
 
-        <div class="panel-body">
+        @if(Session::has('success'))
 
-            <ul class="list-unstyled">
+            <div class="alert alert-success text-center">
+                {{Session::get('success')}}
+            </div>
 
-                <li> Publications: ...........</li>
+        @endif
 
-            </ul>
+        @if(Session::has('error'))
 
-        </div>
+            <div class="alert alert-danger text-center">
+                {{Session::get('error')}}
+            </div>
+
+        @endif
+
     </div>
-
-    @if(Session::has('success'))
-
-        <div class="alert alert-success text-center">
-            {{Session::get('success')}}
-        </div>
-
-    @endif
-
-    @if(Session::has('error'))
-
-        <div class="alert alert-danger text-center">
-            {{Session::get('error')}}
-        </div>
-
-    @endif
 @stop

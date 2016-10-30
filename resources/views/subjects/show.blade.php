@@ -90,6 +90,26 @@
                                 {{$fileentry->original_filename}}
 
                             </a>
+
+                            {{--Tylko nauczyciel może usuwać swoje pliki do przedmiotu--}}
+                            @if(Auth::guard('teacher')->check())
+
+                                    <a class="alert-danger" href="#delete-file-form"
+                                       onclick="event.preventDefault();
+                                            document.getElementById('delete-file-form').submit();" >
+
+                                        <span class="glyphicon glyphicon-remove"></span>
+
+                                    </a>
+
+                                <form id="delete-file-form" action="{{route('deleteentry', $fileentry->original_filename)}}" method="post">
+                                    {{ csrf_field() }}
+                                    {{method_field('delete')}}
+
+                                </form>
+
+                            @endif
+
                         </li>
 
                         <li class="list-unstyled">
