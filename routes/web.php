@@ -4,8 +4,16 @@
 
 Route::get('/', function (){
 
-    return view('main_page');
+    if (Auth::guard('student')->check()){
 
+        return Redirect::to('/students/'. Auth::guard('student')->id() .'/home');
+    }
+    elseif (Auth::guard('teacher')->check()){
+
+        return Redirect::to('/teachers/'. Auth::guard('teacher')->id() .'/home');
+    }
+
+    return view('main_page');
 });
 
 // Login
@@ -54,3 +62,21 @@ Route::post('/fileentry/add/{subject_id}', [
 
 Route::delete('/fileentry/delete/{original_filename}', [
     'as' => 'deleteentry', 'uses' => 'FileEntriesController@delete']);
+
+// Show grades
+
+Route::get('/students/{student}/grades', 'StudentsController@showGrades');
+
+// Panel with grades
+
+Route::get('/teachers/{teacher}/grades/panel', 'TeachersController@showGradesPanel');
+
+// Assign grades
+
+Route::post('/grade/add', [
+    'as' => 'addgrade', 'uses' => 'GradesController@assign']);
+
+// Delete grades
+
+Route::delete('/grade/delete/{grade_id}', [
+    'as' => 'deletegrade', 'uses' => 'GradesController@delete']);

@@ -47,13 +47,15 @@ class FileEntriesController extends Controller
 
     public function delete($original_filename){
 
-        // Remove from database
+        // Search the file in database
         $entry = Fileentry::where('original_filename', '=', $original_filename)->firstOrFail();
+        // Remove from database
         $entry->delete();
 
         // Remove file from storage
         Storage::delete($original_filename);
 
+        Session::flash('success', 'You have correctly removed that file' );
         return back();
     }
 

@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Redirect;
+use Session;
 
 class AuthController extends Controller
 {
@@ -34,6 +35,7 @@ class AuthController extends Controller
 
         }
 
+        Session::flash('error', 'Incorrect email or password. Try again');
         return Redirect::intended('/login')->withInput();
     }
 

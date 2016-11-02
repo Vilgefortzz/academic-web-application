@@ -58,6 +58,18 @@ class StudentsController extends Controller
 
         Session::flash('error', 'Something went wrong. You are back to homepage!!');
 
-        return back();
+        return Redirect::to('/students/'. $student->id .'/home');
+    }
+
+    public function showGrades(Student $student){
+
+        if (Auth::guard('student')->id() == $student->id){
+
+            return view ('students.show_grades', compact('student'));
+        }
+
+        Session::flash('error', 'Something went wrong. You are back to homepage!!');
+
+        return Redirect::to('/students/'. $student->id .'/home');
     }
 }

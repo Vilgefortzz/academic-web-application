@@ -15,4 +15,9 @@ class Student extends Model
 
         return $this->belongsToMany(Subject::class)->withTimestamps();
     }
+
+    public function grades(){
+
+        return $this->hasMany(Grade::class);
+    }
 }

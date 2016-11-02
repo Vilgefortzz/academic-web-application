@@ -19,4 +19,9 @@ class Teacher extends Model
 
         return $this->hasMany(Fileentry::class);
     }
+
+    public function grades(){
+
+        return $this->hasMany(Grade::class);
+    }
 }

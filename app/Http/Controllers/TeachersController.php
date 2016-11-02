@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use App\Teacher;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Redirect;
 use Session;
 
@@ -59,9 +59,20 @@ class TeachersController extends Controller
 
         Session::flash('error', 'Something went wrong. You are back to homepage!!');
 
-        return back();
+        return Redirect::to('/teachers/'. $teacher->id .'/home');
 
     }
 
+    public function showGradesPanel(Teacher $teacher){
 
+        if (Auth::guard('teacher')->id() == $teacher->id){
+
+            $students = Student::all();
+            return view ('teachers.show_grades_panel', compact('teacher', 'students'));
+        }
+
+        Session::flash('error', 'Something went wrong. You are back to homepage!!');
+
+        return Redirect::to('/teachers/'. $teacher->id .'/home');
+    }
 }

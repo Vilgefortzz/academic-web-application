@@ -10,15 +10,7 @@
         </li>
 
         <li>
-            <a href="#">Information about you</a>
-        </li>
-
-        <li>
-            <a href="#">Assign global marks</a>
-        </li>
-
-        <li>
-            <a href="#">Assign local marks</a>
+            <a href={{url('/teachers/'. Auth::guard('teacher')->id() .'/grades/panel')}}>Assign grades</a>
         </li>
 
         <li>

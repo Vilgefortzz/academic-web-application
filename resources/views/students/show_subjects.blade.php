@@ -35,7 +35,7 @@
 
                                     {{$teacher->degree}}
                                     {{$teacher->first_name}}
-                                    {{$teacher->second_name}}
+                                    {{$teacher->second_name}},
 
                                 @endforeach
                             </td>

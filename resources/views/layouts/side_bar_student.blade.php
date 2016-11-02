@@ -10,15 +10,7 @@
         </li>
 
         <li>
-            <a href="#">Information about you</a>
-        </li>
-
-        <li>
-            <a href="#">Global marks</a>
-        </li>
-
-        <li>
-            <a href="#">Local marks</a>
+            <a href={{url('/students/'. Auth::guard('student')->id() . '/grades')}}>Grades</a>
         </li>
 
         <li>

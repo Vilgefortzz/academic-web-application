@@ -92,7 +92,7 @@
                             </a>
 
                             {{--Tylko nauczyciel może usuwać swoje pliki do przedmiotu--}}
-                            @if(Auth::guard('teacher')->check())
+                            @if(Auth::guard('teacher')->check() && Auth::guard('teacher')->id() == $fileentry->id)
 
                                     <a class="alert-danger" href="#delete-file-form"
                                        onclick="event.preventDefault();
@@ -135,6 +135,15 @@
                 </ul>
 
             </div>
+
+            @if(Session::has('success'))
+
+                <div class="alert alert-success text-center">
+                    {{Session::get('success')}}
+                </div>
+
+            @endif
+
         </div>
     </div>
 

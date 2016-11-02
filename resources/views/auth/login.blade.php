@@ -63,7 +63,16 @@
 
                         </div>
                     </form>
+
                 </div>
+
+                @if(Session::has('error'))
+
+                    <div class="alert alert-danger text-center">
+                        {{Session::get('error')}}
+                    </div>
+
+                @endif
             </div>
         </div>
 
