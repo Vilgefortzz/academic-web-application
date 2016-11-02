@@ -79,7 +79,7 @@
             @if(Session::has('error'))
 
                 <div class="alert alert-danger text-center">
-                    {{Session::get('error')}}
+                    <b>{{Session::get('error')}}</b>
                 </div>
 
             @endif
@@ -87,7 +87,7 @@
             @if(Session::has('success'))
 
                 <div class="alert alert-success text-center">
-                    {{Session::get('success')}}
+                    <b>{{Session::get('success')}}</b>
                 </div>
 
             @endif

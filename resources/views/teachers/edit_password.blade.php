@@ -18,19 +18,23 @@
 
                         <div class="panel-body">
 
-                            <label for="password">New Password:</label>
-                            <input id="password" type="password" name="password">
+                            <label for="old_password">Old password:</label>
+                            <input id="old_password" type="password" name="old_password" style="margin-left: 40px"><br>
+                            <label for="password">New password:</label>
+                            <input id="password" type="password" name="password" style="margin-left: 35px"><br>
+                            <label for="password_confirmation">Confirm password:</label>
+                            <input id="password_confirmation" type="password" name="password_confirmation" style="margin-left: 10px">
 
                         </div>
 
                     </div>
 
-                <button type="submit" class="btn-primary">Confirm</button>
+                    <button type="submit" class="btn-primary">Submit</button>
 
                 </div>
         </form>
 
-        {{--Obsługa walidacji danych--}}
+        {{--Handle data validation--}}
         @if (count($errors) > 0)
             <div class="alert alert-danger text-center">
                 <ul>
@@ -39,6 +43,22 @@
                     @endforeach
                 </ul>
             </div>
+        @endif
+
+        @if(Session::has('success'))
+
+            <div class="alert alert-success text-center">
+                <b>{{Session::get('success')}}</b>
+            </div>
+
+        @endif
+
+        @if(Session::has('error'))
+
+            <div class="alert alert-danger text-center">
+                <b>{{Session::get('error')}}</b>
+            </div>
+
         @endif
 
     </div>

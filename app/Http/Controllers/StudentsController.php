@@ -35,20 +35,29 @@ class StudentsController extends Controller
 
     public function changePassword(Request $request, Student $student){
 
-        // Walidacja
+        // Validation
 
         $this->validate($request, [
 
-            'password' => 'required|min:6|max:14'
-
+            'old_password' => 'required',
+            'password' => 'required|min:6|max:14|confirmed',
+            'password_confirmation' => 'required'
         ]);
 
-        // Zmiana hasła + zapisanie w formie zaszyfrowanej
-        $student->update(['password' => Hash::make($request->get('password'))]);
+        $old = $request->input('old_password');
+        $new = $request->input('password');
 
-        Session::flash('success', 'You are succesfully changed your password!!');
+        if (password_verify($old, $student->password)){
 
-        return Redirect::to('students/'. $student->id . '/home');
+            // Zmiana hasła + zapisanie w formie zaszyfrowanej
+            $student->update(['password' => Hash::make($new)]);
+
+            Session::flash('success', 'You are succesfully changed your password!!');
+            return Redirect::to('students/'. $student->id . '/home');
+        }
+
+        Session::flash('error', 'You havent changed your password - incorrectly old password. Try again');
+        return back();
     }
 
     public function home(Student $student){
