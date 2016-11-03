@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use App\Student;
 use App\Teacher;
 use Auth;
+use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
 use Redirect;
@@ -76,8 +78,22 @@ class TeachersController extends Controller
 
         if (Auth::guard('teacher')->id() == $teacher->id){
 
-            $students = Student::all();
-            return view ('teachers.show_grades_panel', compact('teacher', 'students'));
+            return view ('teachers.show_grades_panel', compact('teacher'));
+        }
+
+        Session::flash('error', 'Something went wrong. You are back to homepage!!');
+
+        return Redirect::to('/teachers/'. $teacher->id .'/home');
+    }
+
+    public function showMessagesPanel(Teacher $teacher){
+
+        if (Auth::guard('teacher')->id() == $teacher->id){
+
+            $currentDate = Carbon::now();
+            $messagesFromMonth = Message::whereBetween('created_at', array($currentDate->subMonth(), Carbon::now()))->get();
+
+            return view ('teachers.show_messages_panel', compact('teacher', 'currentDate', 'messagesFromMonth'));
         }
 
         Session::flash('error', 'Something went wrong. You are back to homepage!!');

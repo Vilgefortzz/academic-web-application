@@ -14,8 +14,8 @@
                 <form name="grade_form" action="{{route('addgrade', [])}}" method="post">
                     {{ csrf_field() }}
 
-                    <label for="student">Student:</label>
-                    <select class="select" name="student" id="student" onclick="sortList('student')">
+                    <label for="student">Student:</label><br>
+                    <select class="select selectpicker show-tick" name="student" id="student" onclick="sortList('student')">
 
                         @foreach($teacher->subjects as $subject)
 
@@ -30,8 +30,8 @@
                     </select>
 
                     <br>
-                    <label for="subject">Subject:</label>
-                    <select name="subject" id="subject" onclick="sortList('subject')">
+                    <label for="subject">Subject:</label><br>
+                    <select class="selectpicker show-tick" name="subject" id="subject" onclick="sortList('subject')">
 
                         @foreach($teacher->subjects as $subject)
 
@@ -43,8 +43,8 @@
                     </select>
 
                     <br>
-                    <label for="grade">Grade:</label>
-                    <select name="grade" id="grade">
+                    <label for="grade">Grade:</label><br>
+                    <select class="selectpicker show-tick" name="grade" id="grade">
 
                         <option value="2">2.0</option>
                         <option value="3">3.0</option>
@@ -57,7 +57,7 @@
 
                     <br>
                     <label for="form_of_classes">Form of classes:</label>
-                    <select name="form_of_classes" id="form_of_classes">
+                    <select class="selectpicker show-tick" name="form_of_classes" id="form_of_classes">
 
                         <option value="lab">Laboratories</option>
                         <option value="proj">Projects</option>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use App\Student;
 use Auth;
+use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -75,6 +77,21 @@ class StudentsController extends Controller
         if (Auth::guard('student')->id() == $student->id){
 
             return view ('students.show_grades', compact('student'));
+        }
+
+        Session::flash('error', 'Something went wrong. You are back to homepage!!');
+
+        return Redirect::to('/students/'. $student->id .'/home');
+    }
+
+    public function showMessages(Student $student){
+
+        if (Auth::guard('student')->id() == $student->id){
+
+            $currentDate = Carbon::now();
+            $messagesFromMonth = Message::whereBetween('created_at', array($currentDate->subMonth(), Carbon::now()))->get();
+
+            return view ('students.show_messages', compact('student', 'currentDate', 'messagesFromMonth'));
         }
 
         Session::flash('error', 'Something went wrong. You are back to homepage!!');

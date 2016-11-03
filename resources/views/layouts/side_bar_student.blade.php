@@ -18,7 +18,7 @@
         </li>
 
         <li>
-            <a href="#">Messages/Ads</a>
+            <a href={{url('/students/'. Auth::guard('student')->id() .'/messages')}}>Messages/Ads</a>
         </li>
 
     </ul>

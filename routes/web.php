@@ -80,3 +80,21 @@ Route::post('/grade/add', [
 
 Route::delete('/grade/delete/{grade_id}', [
     'as' => 'deletegrade', 'uses' => 'GradesController@delete']);
+
+// Show messages
+
+Route::get('/students/{student}/messages', 'StudentsController@showMessages');
+
+// Panel with messages
+
+Route::get('/teachers/{teacher}/messages/panel', 'TeachersController@showMessagesPanel');
+
+// Add new message
+
+Route::post('/message/add', [
+    'as' => 'addmessage', 'uses' => 'MessagesController@add']);
+
+// Delete message
+
+Route::delete('/message/delete/{message_id}', [
+    'as' => 'deletemessage', 'uses' => 'MessagesController@delete']);

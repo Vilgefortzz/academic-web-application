@@ -24,4 +24,9 @@ class Teacher extends Model
 
         return $this->hasMany(Grade::class);
     }
+
+    public function messages(){
+
+        return $this->hasMany(Message::class);
+    }
 }

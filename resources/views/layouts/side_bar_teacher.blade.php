@@ -18,7 +18,7 @@
         </li>
 
         <li>
-            <a href="#">Send message to students</a>
+            <a href={{url('/teachers/'. Auth::guard('teacher')->id() .'/messages/panel')}}>Send message to students</a>
         </li>
 
     </ul>
