@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailMessage;
 use App\Message;
+use App\Student;
+use App\Subject;
+use App\Teacher;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Mail;
 use Session;
 
 class MessagesController extends Controller
@@ -39,6 +44,20 @@ class MessagesController extends Controller
             $message->to_proj_groups = $groupsString;
             $message->save();
 
+
+            // Objects needed to set information in emails
+            $subject = Subject::find($subject_id);
+            $teacher = Teacher::find(Auth::guard('teacher')->id());
+
+            // Retrive a collection of students
+            foreach ($toProjGroups as $toProjGroup){
+
+                $students = Student::where('pr_group', $toProjGroup)->get();
+
+                // Send emails
+                $this->sendEmail($students, $header, $content, $subject, $teacher);
+            }
+
             Session::flash('success', 'You have added a new message');
             return back();
         }
@@ -61,7 +80,21 @@ class MessagesController extends Controller
             $message->to_lab_groups = $groupsString;
             $message->save();
 
-            Session::flash('success', 'You have added a new message');
+
+            // Objects needed to set information in emails
+            $subject = Subject::find($subject_id);
+            $teacher = Teacher::find(Auth::guard('teacher')->id());
+
+            // Retrive a collection of students
+            foreach ($toLabGroups as $toLabGroup){
+
+                $students = Student::where('lab_group', $toLabGroup)->get();
+
+                // Send emails
+                $this->sendEmail($students, $header, $content, $subject, $teacher);
+            }
+
+            Session::flash('success', 'You have added a new message and send emails to students');
             return back();
 
         }
@@ -79,6 +112,12 @@ class MessagesController extends Controller
 
         Session::flash('success', 'You have correctly removed that message' );
         return back();
+    }
+
+    private function sendEmail($students, $header, $content, $subject, $teacher){
+
+        Mail::to($students)
+            ->send(new EmailMessage($header, $content, $subject, $teacher));
     }
 
 }
