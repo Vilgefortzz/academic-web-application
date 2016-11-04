@@ -2,7 +2,15 @@
 
 @section('content')
 
-    <div class="panel panel-default" style="margin-top: 80px">
+    @if(Session::has('success'))
+
+        <div class="alert alert-success text-center" style="margin-top: 60px">
+            <b>{{Session::get('success')}}</b>
+        </div>
+
+    @endif
+
+    <div class="panel panel-default" style="margin-top: 70px">
         <div class="panel-heading main-header">
             <h1 class="h1-sub text-center main-header">
                 Virtual University
@@ -20,13 +28,13 @@
 
             <div class="col-md-3">
 
-                <h4><b>Assign marks</b></h4>
+                <h4><b>Assign grades</b></h4>
 
             </div>
 
             <div class="col-md-3">
 
-                <h4><b>Send emails to students</b></h4>
+                <h4><b>Send messages and emails to students</b></h4>
 
             </div>
 

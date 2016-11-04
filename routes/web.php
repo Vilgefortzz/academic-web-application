@@ -21,6 +21,13 @@ Route::get('/', function (){
 Route::get('/login', 'AuthController@login');
 Route::post('/handleLogin', 'AuthController@handleLogin');
 
+// Password reset
+
+Route::get('/reset/password/panel', 'AuthController@resetPasswordPanel');
+Route::post('/reset/password/email', 'AuthController@resetPasswordEmail');
+Route::get('/reset/password/temp/{email}', 'AuthController@resetPasswordTemp');
+Route::post('/reset/password/new/{email}', 'AuthController@resetPasswordNew');
+
 // Logout
 
 Route::post('/handleLogout', 'AuthController@handleLogout');
