@@ -75,7 +75,7 @@
 
         @elseif(Auth::guard('admin')->check())
 
-            <div id="wrapper" style="margin-top: 52px">
+            <div id="wrapper" style="margin-top: 51px">
 
                 @include('layouts.nav_admin')
                 @include('layouts.side_bar_admin')

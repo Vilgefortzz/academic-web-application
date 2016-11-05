@@ -55,8 +55,53 @@
 
                  @endforeach
 
-             @endif
+                 @foreach(explode('|', $message->to_proj_groups) as $proj_group)
 
+                     @if ($proj_group === $student->pr_group)
+
+                         <div class="col-md-4">
+
+                             <div class="panel" style="margin-right: 30px">
+
+                                 <div class="panel-heading text-center" style="background-color: #636b6f; color: ghostwhite">
+                                     <i><b>{{$message->subject->name}}: {{$message->header}}</b></i>
+                                 </div>
+
+                                 <div class="panel-body">
+
+                                     <small>{{$message->content}}</small>
+
+                                 </div>
+
+                                 <div style="margin-bottom: 0">
+
+                                     <small style="color: darkred; font-size: 70%">
+                                         <i>
+                                             by:
+                                             {{$message->teacher->degree}}
+                                             {{$message->teacher->first_name}}
+                                             {{$message->teacher->second_name}}
+                                         </i>
+                                     </small>
+                                     <br>
+
+                                     <small style="color: darkslategrey; font-size: 70%">
+                                         <i>
+                                             added on:
+                                             {{$message->created_at}}
+                                         </i>
+                                     </small>
+
+                                 </div>
+                             </div>
+
+                         </div>
+
+                     @endif
+
+                 @endforeach
+
+             @endif
 
          @endforeach
 

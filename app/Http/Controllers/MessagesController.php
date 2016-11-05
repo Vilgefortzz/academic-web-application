@@ -44,7 +44,6 @@ class MessagesController extends Controller
             $message->to_proj_groups = $groupsString;
             $message->save();
 
-
             // Objects needed to set information in emails
             $subject = Subject::find($subject_id);
             $teacher = Teacher::find(Auth::guard('teacher')->id());

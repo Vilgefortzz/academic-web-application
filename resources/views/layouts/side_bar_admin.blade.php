@@ -21,5 +21,13 @@
             <a href={{url('/admins/'. Auth::guard('admin')->id() .'/add/subject')}}>Add new subject</a>
         </li>
 
+        <li>
+            <a href={{url('/admins/'. Auth::guard('admin')->id() . '/bind/students/subject')}}>Bind students to subject</a>
+        </li>
+
+        <li>
+            <a href={{url('/admins/'. Auth::guard('admin')->id() .'/bind/teachers/subject')}}>Bind teachers to subject</a>
+        </li>
+
     </ul>
 </div>

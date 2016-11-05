@@ -9,6 +9,7 @@ use App\Subject;
 use App\Teacher;
 use App\TeacherPassword;
 use Auth;
+use DB;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -48,6 +49,139 @@ class AdminsController extends Controller
 
         return view('admins.add_subject', compact('subjects'));
 
+    }
+
+    public function bindStudentsToSubjectPanel(){
+
+        $students = Student::all();
+        $subjects = Subject::all();
+
+        return view('admins.bind_students_to_subject', compact('students', 'subjects'));
+    }
+
+    public function bindTeachersToSubjectPanel(){
+
+        $teachers = Teacher::all();
+        $subjects = Subject::all();
+
+        return view('admins.bind_teachers_to_subject', compact('teachers', 'subjects'));
+    }
+
+    public function bindStudentsToSubject(){
+
+        $students = Input::get('student');
+        $subject_id = (integer)Input::get('subject');
+
+        $subject = Subject::find($subject_id);
+
+        if ($students == null || $subject_id == null || $subject == null){
+
+            Session::flash('error', 'Something went wrong' );
+            return back();
+
+        }
+
+        if(is_array($students)) {
+
+            foreach ($students as $student){
+
+                // Zabezpieczenie przed zduplikowanymi tabelami
+                if (!$subject->students->contains((integer)$student)) {
+                    $subject->students()->attach((integer)$student);
+                }
+                else{
+
+                    Session::flash('error', 'You cannot create binding between this student and subject because this binding is already set');
+                    return back();
+                }
+            }
+        }
+        else {
+
+            // Zabezpieczenie przed zduplikowanymi tabelami
+            if (!$subject->students->contains((integer)$students)) {
+                $subject->students()->attach((integer)$students);
+            }
+            else{
+
+                Session::flash('error', 'You cannot create binding between this student and subject because this binding is already set');
+                return back();
+            }
+        }
+
+        Session::flash('success', 'You have correctly binded students to subjects' );
+        return back();
+
+    }
+
+    public function bindTeachersToSubject(){
+
+        $teachers = Input::get('teacher');
+        $subject_id = (integer)Input::get('subject');
+
+        $subject = Subject::find($subject_id);
+
+        if ($teachers == null || $subject_id == null || $subject == null){
+
+            Session::flash('error', 'Something went wrong' );
+            return back();
+
+        }
+
+        if(is_array($teachers)) {
+
+            foreach ($teachers as $teacher){
+
+                // Zabezpieczenie przed zduplikowanymi tabelami
+                if (!$subject->teachers->contains((integer)$teacher)) {
+                    $subject->teachers()->attach((integer)$teacher);
+                }
+                else{
+
+                    Session::flash('error', 'You cannot create binding between this teacher and subject because this binding is already set');
+                    return back();
+                }
+            }
+        }
+        else {
+
+            // Zabezpieczenie przed zduplikowanymi tabelami
+            if (!$subject->teachers->contains((integer)$teachers)) {
+                $subject->teachers()->attach((integer)$teachers);
+            }
+            else{
+
+                Session::flash('error', 'You cannot create binding between this teacher and subject, because this binding is already set');
+                return back();
+            }
+        }
+
+        Session::flash('success', 'You have correctly binded teachers to subjects' );
+        return back();
+    }
+
+    public function deleteBindStudent($student_id, $subject_id){
+
+        // Search the bindings and delete
+        DB::table('student_subject')->where([
+            ['student_id', $student_id],
+            ['subject_id', $subject_id]])
+            ->delete();
+
+        Session::flash('success', 'You have correctly removed that bindings' );
+        return back();
+    }
+
+    public function deleteBindTeacher($teacher_id, $subject_id){
+
+        // Search the bindings and delete
+        DB::table('subject_teacher')->where([
+            ['teacher_id', $teacher_id],
+            ['subject_id', $subject_id]])
+            ->delete();
+
+        Session::flash('success', 'You have correctly removed that bindings' );
+        return back();
     }
 
     public function addStudent(Request $request){
@@ -190,28 +324,6 @@ class AdminsController extends Controller
         Session::flash('success', 'You have correctly removed that subject' );
         return back();
     }
-
-//    public function bindStudentSubject(){
-//
-//        // Zabezpieczenie przed zduplikowanymi tabelami
-//        if (Student::find($request->id)!= null && !$subject->students->contains($request->id)) {
-//            $subject->students()->attach($request->id);
-//        }
-//
-//        return back();
-//
-//    }
-//
-//    public function bindTeacherSubject(){
-//
-//        // Zabezpieczenie przed zduplikowanymi tabelami
-//        if (Teacher::find($request->id)!= null && !$subject->teachers->contains($request->id)) {
-//            $this->teachers()->attach($request->id);
-//        }
-//
-//        return back();
-//
-//    }
 
     //    Generate a random string, using a cryptographically secure pseudorandom number generator
     private function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')

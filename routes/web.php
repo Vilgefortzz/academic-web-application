@@ -61,6 +61,18 @@ Route::delete('/teacher/delete/{teacher_id}', [
 Route::delete('/subject/delete/{subject_id}', [
     'as' => 'deletesubject', 'uses' => 'AdminsController@deleteSubject']);
 
+Route::get('/admins/{admin}/bind/students/subject', 'AdminsController@bindStudentsToSubjectPanel');
+Route::get('/admins/{admin}/bind/teachers/subject', 'AdminsController@bindTeachersToSubjectPanel');
+
+Route::post('/bind/students/subject', 'AdminsController@bindStudentsToSubject');
+Route::post('/bind/teachers/subject', 'AdminsController@bindTeachersToSubject');
+
+Route::delete('/student/delete/bind/{student_id}/{subject_id}', [
+    'as' => 'deletebindstudent', 'uses' => 'AdminsController@deleteBindStudent']);
+
+Route::delete('/teacher/delete/bind/{teacher_id}/{subject_id}', [
+    'as' => 'deletebindteacher', 'uses' => 'AdminsController@deleteBindTeacher']);
+
 // Students
 
 Route::get('/students/{student}/subjects', 'StudentsController@showSubjects');
