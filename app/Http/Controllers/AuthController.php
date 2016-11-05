@@ -17,8 +17,6 @@ use Session;
 class AuthController extends Controller
 {
 
-    public static $email;
-
     public function login(){
 
         return view ('auth.login');
@@ -42,6 +40,12 @@ class AuthController extends Controller
                 return Redirect::intended('/teachers/'. Auth::guard('teacher')->user()->id . '/home');
 
         }
+        elseif ($data2 === 'admin'){
+
+            if (Auth::guard('admin')->attempt($data1))
+                return Redirect::intended('/admins/'. Auth::guard('admin')->user()->id . '/home');
+
+        }
 
         Session::flash('error', 'Incorrect email or password. Try again');
         return Redirect::intended('/login')->withInput();
@@ -54,10 +58,14 @@ class AuthController extends Controller
             Auth::guard('student')->logout();
             return Redirect::to('/');
         }
-
         elseif (Auth::guard('teacher')->check()){
 
             Auth::guard('teacher')->logout();
+            return Redirect::to('/');
+        }
+        elseif (Auth::guard('admin')->check()){
+
+            Auth::guard('admin')->logout();
             return Redirect::to('/');
         }
     }

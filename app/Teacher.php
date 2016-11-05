@@ -29,4 +29,9 @@ class Teacher extends Model
 
         return $this->hasMany(Message::class);
     }
+
+    public function generatedPassword()
+    {
+        return $this->hasOne(TeacherPassword::class);
+    }
 }

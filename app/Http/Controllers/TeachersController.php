@@ -14,16 +14,6 @@ use Session;
 
 class TeachersController extends Controller
 {
-    public function index(){
-
-        $teachers = Teacher::all();
-        return view('teachers.index', compact('teachers'));
-    }
-
-    public function show(Teacher $teacher){
-
-        return view('teachers.show', compact('teacher'));
-    }
 
     public function showSubjects(Teacher $teacher){
 

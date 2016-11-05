@@ -13,16 +13,6 @@ use Session;
 
 class StudentsController extends Controller
 {
-    public function index(){
-
-        $students = Student::all();
-        return view('students.index', compact('students'));
-    }
-
-    public function show(Student $student){
-
-        return view('students.show', compact('student'));
-    }
 
     public function showSubjects(Student $student){
 

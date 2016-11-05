@@ -19,22 +19,18 @@
             <div class="panel-body">
 
                 <span class="glyphicon glyphicon-user"></span>
-                {{$student->first_name}}
-                {{$student->second_name}}
+                {{$admin->name}}
 
                 <h3><b>Informations:</b></h3><br>
 
                 <ul class="list-unstyled">
 
-                    <li><span class="glyphicon glyphicon-list-alt"></span> Album number: {{$student->album_number}}</li>
-                    <li><span class="glyphicon glyphicon-modal-window"></span> Project group: {{$student->pr_group}}</li>
-                    <li><span class="glyphicon glyphicon-modal-window"></span> Laboratory group: {{$student->lab_group}}</li>
-
-                    <li><span class="glyphicon glyphicon-globe"></span> Email address: {{$student->email}}</li>
+                    <li><span class="glyphicon glyphicon-globe"></span> Email address: {{$admin->email}}</li>
 
                 </ul>
 
-                <h3><span class="glyphicon glyphicon-envelope"></span> Check messages from your subjects</h3>
+                <h3><span class="glyphicon glyphicon-education"></span> Create students, teachers and subjects</h3>
+                <h3><span class="glyphicon glyphicon-random"></span> Define relationships between them</h3>
 
             </div>
         </div>

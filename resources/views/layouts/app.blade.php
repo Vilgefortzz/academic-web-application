@@ -73,6 +73,25 @@
 
             </div>
 
+        @elseif(Auth::guard('admin')->check())
+
+            <div id="wrapper" style="margin-top: 52px">
+
+                @include('layouts.nav_admin')
+                @include('layouts.side_bar_admin')
+
+                <div class="container">
+                    <div id="page-content-wrapper">
+                        <div class="row">
+
+                            @yield('content')
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         @else
             @include('layouts.nav_guest')
 

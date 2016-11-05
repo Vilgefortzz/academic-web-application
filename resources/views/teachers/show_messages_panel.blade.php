@@ -78,12 +78,12 @@
 
                     <label for="header">Header:</label>
                     <br>
-                    <textarea name="header" id="header" style="width: 100%"></textarea>
+                    <textarea name="header" id="header" style="width: 100%" required></textarea>
                     <br>
 
                     <label for="content">Content:</label>
                     <br>
-                    <textarea name="content" id="content" style="width: 100%"></textarea>
+                    <textarea name="content" id="content" style="width: 100%" required></textarea>
                     <br>
 
                     <button class="btn">Add a message</button>

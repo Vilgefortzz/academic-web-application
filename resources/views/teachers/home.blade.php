@@ -2,16 +2,15 @@
 
 @section('content')
 
-    <div class="col-md-5">
+    <div class="col-md-8">
 
         <div class="panel panel-default">
             <div class="panel-heading">
 
                 <h1>
 
-                    {{$teacher->degree}}
-                    {{$teacher->first_name}}
-                    {{$teacher->second_name}}
+                    <span class="glyphicon glyphicon-dashboard"></span>
+                    Your dashboard
 
                 </h1>
 
@@ -19,11 +18,22 @@
 
             <div class="panel-body">
 
+                <span class="glyphicon glyphicon-user"></span>
+                {{$teacher->degree}}
+                {{$teacher->first_name}}
+                {{$teacher->second_name}}
+
+                <h3><b>Informations:</b></h3><br>
+
                 <ul class="list-unstyled">
 
-                    <li> Publications: ...........</li>
+                    <li><span class="glyphicon glyphicon-globe"></span> Email address: {{$teacher->email}}</li>
 
                 </ul>
+
+                <h3><span class="glyphicon glyphicon-envelope"></span> Add messages and send emails to students</h3>
+                <h3><span class="glyphicon glyphicon-blackboard"></span> Add grades to students</h3>
+                <h3><span class="glyphicon glyphicon-file"></span> Upload educational materials</h3>
 
             </div>
         </div>

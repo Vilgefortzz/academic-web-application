@@ -20,4 +20,9 @@ class Student extends Model
 
         return $this->hasMany(Grade::class);
     }
+
+    public function generatedPassword()
+    {
+        return $this->hasOne(StudentPassword::class);
+    }
 }

@@ -59,12 +59,20 @@
 
                     <div class="form-group">
 
+                        <i><b style="color: #53290c">Choose one:</b></i><br>
+
                         <label for="student">Student</label>
                         <input id="student" type="radio" name="choice" value="student" checked>
                         <label for="teacher">Teacher</label>
                         <input id="teacher" type="radio" name="choice" value="teacher">
 
+                        <br><br>
+                        <i><b style="color: #6e0400">Only for admin:</b></i><br>
+                        <label for="admin">Admin</label>
+                        <input id="admin" type="radio" name="choice" value="admin">
+
                     </div>
+
                 </form>
 
             </div>

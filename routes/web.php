@@ -12,6 +12,10 @@ Route::get('/', function (){
 
         return Redirect::to('/teachers/'. Auth::guard('teacher')->id() .'/home');
     }
+    elseif (Auth::guard('admin')->check()){
+
+        return Redirect::to('/admins/'. Auth::guard('admin')->id() .'/home');
+    }
 
     return view('main_page');
 });
@@ -36,26 +40,41 @@ Route::post('/handleLogout', 'AuthController@handleLogout');
 
 Route::get('/students/{student}/home', 'StudentsController@home');
 Route::get('/teachers/{teacher}/home', 'TeachersController@home');
+Route::get('/admins/{admin}/home', 'AdminsController@home');
+
+// Admins
+
+Route::get('/admins/{admin}/add/student', 'AdminsController@addStudentPanel');
+Route::get('/admins/{admin}/add/teacher', 'AdminsController@addTeacherPanel');
+Route::get('/admins/{admin}/add/subject', 'AdminsController@addSubjectPanel');
+
+Route::post('/add/student', 'AdminsController@addStudent');
+Route::post('/add/teacher', 'AdminsController@addTeacher');
+Route::post('/add/subject', 'AdminsController@addSubject');
+
+Route::delete('/student/delete/{student_id}', [
+    'as' => 'deletestudent', 'uses' => 'AdminsController@deleteStudent']);
+
+Route::delete('/teacher/delete/{teacher_id}', [
+    'as' => 'deleteteacher', 'uses' => 'AdminsController@deleteTeacher']);
+
+Route::delete('/subject/delete/{subject_id}', [
+    'as' => 'deletesubject', 'uses' => 'AdminsController@deleteSubject']);
 
 // Students
 
-Route::get('/students', 'StudentsController@index');
-Route::get('/students/{student}', 'StudentsController@show');
 Route::get('/students/{student}/subjects', 'StudentsController@showSubjects');
 Route::get('/students/{student}/edit', 'StudentsController@editPassword');
 Route::patch('/students/{student}', 'StudentsController@changePassword');
 
 // Teachers
 
-Route::get('/teachers', 'TeachersController@index');
-Route::get('/teachers/{teacher}', 'TeachersController@show');
 Route::get('/teachers/{teacher}/subjects', 'TeachersController@showSubjects');
 Route::get('/teachers/{teacher}/edit', 'TeachersController@editPassword');
 Route::patch('/teachers/{teacher}', 'TeachersController@changePassword');
 
 // Subjects
 
-Route::get('/subjects', 'SubjectsController@index');
 Route::get('/subjects/{subject}', 'SubjectsController@show');
 
 // Upload and download files
